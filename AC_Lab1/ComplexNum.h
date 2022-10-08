@@ -63,14 +63,16 @@ public:
 
 	bool operator ==(const ComplexNum& c1)const
 	{
-		if (this->real == c1.real && this->imag == c1.imag)
+		double EPSILON = 0.001;
+		if (abs(this->real - c1.real) < EPSILON && abs(this->imag - c1.imag) < EPSILON)
 			return true;
 		return false;
 	}
 
 	bool operator !=(const ComplexNum& c1)const
 	{
-		if (this->real == c1.real && this->imag == c1.imag)
+		double EPSILON = 0.001;
+		if (abs(this->real - c1.real) < EPSILON && abs(this->imag - c1.imag) < EPSILON)
 			return false;
 		return true;
 	}
