@@ -18,6 +18,14 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AC_Lab1\AC_Lab1.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AC_Lab1\ComplexMatrix.h" />
+    <ClInclude Include="AC_Lab1\ComplexNum.h" />
+    <ClInclude Include="AC_Lab1\Strassen.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -138,14 +146,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="AC_Lab1.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="ComplexMatrix.h" />
-    <ClInclude Include="ComplexNum.h" />
-    <ClInclude Include="Strassen.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

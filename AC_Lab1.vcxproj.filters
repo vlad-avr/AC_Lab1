@@ -15,18 +15,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AC_Lab1.cpp">
+    <ClCompile Include="AC_Lab1\AC_Lab1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Strassen.h">
+    <ClInclude Include="AC_Lab1\ComplexMatrix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ComplexMatrix.h">
+    <ClInclude Include="AC_Lab1\ComplexNum.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ComplexNum.h">
+    <ClInclude Include="AC_Lab1\Strassen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
