@@ -55,6 +55,18 @@ public:
 		matrix[i][j] = num;
 	}
 
+	void set_column(int j, ComplexNum* num)
+	{
+		for (int i = 0; i < this->rows; i++)
+			this->set(i, j, num[i]);
+	}
+
+	void set_row(int i, ComplexNum* num)
+	{
+		for (int j = 0; j < this->columns; j++)
+			this->set(i, j, num[j]);
+	}
+
 	ComplexNum get(unsigned int i, unsigned int j) {
 		assert(i < columns);
 		assert(j < rows);
