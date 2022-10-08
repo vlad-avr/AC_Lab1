@@ -1,0 +1,3 @@
+S:/Projects/Programming/GitHub Rep/Labs/Labs/KNU_YEAR_2/Algorithms_and_complexity/AC_Lab1/cmake-build-debug/CMakeFiles/AC_Lab1.dir
+S:/Projects/Programming/GitHub Rep/Labs/Labs/KNU_YEAR_2/Algorithms_and_complexity/AC_Lab1/cmake-build-debug/CMakeFiles/edit_cache.dir
+S:/Projects/Programming/GitHub Rep/Labs/Labs/KNU_YEAR_2/Algorithms_and_complexity/AC_Lab1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
