@@ -114,6 +114,8 @@ public:
 			{
 				for (int k = 0; k < other.rows; k++)
 				{
+					auto to_check1 = this->matrix[i][k];
+					auto to_check2 = other.matrix[k][j];
 					res.matrix[i][j] = res.matrix[i][j] + this->matrix[i][k] * other.matrix[k][j];
 				}
 			}
@@ -130,6 +132,8 @@ public:
 		{
 			for (int j = 0; j < this->columns; j++)
 			{
+				auto to_check1 = this->matrix[i][j];
+				auto to_check2 = other.matrix[i][j];
 				if (this->matrix[i][j] != other.matrix[i][j])
 					return false;
 			}
