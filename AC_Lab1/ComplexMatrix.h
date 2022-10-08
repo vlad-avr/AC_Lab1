@@ -86,6 +86,9 @@ public:
     //function for exchanging two rows of a matrix
     void swapRows(int row1, int row2)
     {
+        assert(row1 >= 0 and row1 < rows);
+        assert(row2 >= 0 and row2 < columns);
+
         int col = this->get_columns();
         for (int i = 0; i < col; i++)
         {
@@ -97,7 +100,6 @@ public:
 
     int getRank()
     {
-
         ComplexMatrix complexMatrix = *this;
 
         int R = complexMatrix.get_rows();
