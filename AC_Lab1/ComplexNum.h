@@ -11,6 +11,16 @@ public:
 		this->imag = imag;
 	}
 
+	double get_real()
+	{
+		return this->real;
+	}
+
+	double get_imag()
+	{
+		return this->imag;
+	}
+
 	//~ComplexNum(){}
 
 	void operator=(const ComplexNum& c1) {
@@ -38,6 +48,16 @@ public:
 		ComplexNum new_num;
 		new_num.real = this->real * c1.real - this->imag * c1.imag;
 		new_num.imag = this->imag * c1.real + this->real * c1.imag;
+		return new_num;
+	}
+
+	ComplexNum operator/(const ComplexNum& c1)const {
+		double div = c1.real * c1.real + c1.imag * c1.imag;
+		ComplexNum new_num;
+		new_num.real = this->real * c1.real + this->imag * c1.imag;
+		new_num.real /= div;
+		new_num.imag = this->imag * c1.real - this->real * c1.imag;
+		new_num.imag /= div;
 		return new_num;
 	}
 
