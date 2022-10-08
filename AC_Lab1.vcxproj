@@ -19,13 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AC_Lab1\AC_Lab1.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="AC_Lab1\ComplexMatrix.h" />
     <ClInclude Include="AC_Lab1\ComplexNum.h" />
     <ClInclude Include="AC_Lab1\Strassen.h" />
     <ClInclude Include="AC_Lab1\LU_Inverse.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AC_Lab1\test.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

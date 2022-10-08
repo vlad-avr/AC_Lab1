@@ -15,11 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AC_Lab1\AC_Lab1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="AC_Lab1\ComplexMatrix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -32,5 +27,10 @@
     <ClInclude Include="AC_Lab1\LU_Inverse.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AC_Lab1\test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

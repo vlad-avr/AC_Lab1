@@ -44,8 +44,8 @@ public:
 	}
 
 	void set(unsigned int i, unsigned int j, double real, double imag) {
-		assert(i < columns);
-		assert(j < rows);
+		assert(i < rows);
+		assert(j < columns);
 		matrix[i][j] = ComplexNum(real, imag);
 	}
 
@@ -102,6 +102,23 @@ public:
 			}
 		}
 		return temp;
+	}
+
+	bool operator ==(const ComplexMatrix& other)const
+	{
+		if (this->columns != other.columns || this->rows != other.rows)
+			return false;
+
+		for (int i = 0; i < this->rows; i++)
+		{
+			for (int j = 0; j < this->columns; j++)
+			{
+				if (this->matrix[i][j] != other.matrix[i][j])
+					return false;
+			}
+		}
+
+		return true;
 	}
 
 	/*ComplexMatrix* add(ComplexMatrix* m1, ComplexMatrix* m2) {

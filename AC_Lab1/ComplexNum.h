@@ -30,28 +30,28 @@ public:
 		this->imag = c1.imag;
 	}
 
-	ComplexNum operator+(const ComplexNum& c1)const {
+	ComplexNum operator +(const ComplexNum& c1)const {
 		ComplexNum new_num;
 		new_num.real = this->real + c1.real;
 		new_num.imag = this->imag + c1.imag;
 		return new_num;
 	}
 
-	ComplexNum operator-(const ComplexNum& c1)const {
+	ComplexNum operator -(const ComplexNum& c1)const {
 		ComplexNum new_num;
 		new_num.real = this->real - c1.real;
 		new_num.imag = this->imag - c1.imag;
 		return new_num;
 	}
 
-	ComplexNum operator*(const ComplexNum& c1)const {
+	ComplexNum operator *(const ComplexNum& c1)const {
 		ComplexNum new_num;
 		new_num.real = this->real * c1.real - this->imag * c1.imag;
 		new_num.imag = this->imag * c1.real + this->real * c1.imag;
 		return new_num;
 	}
 
-	ComplexNum operator/(const ComplexNum& c1)const {
+	ComplexNum operator /(const ComplexNum& c1)const {
 		double div = c1.real * c1.real + c1.imag * c1.imag;
 		ComplexNum new_num;
 		new_num.real = this->real * c1.real + this->imag * c1.imag;
@@ -59,6 +59,20 @@ public:
 		new_num.imag = this->imag * c1.real - this->real * c1.imag;
 		new_num.imag /= div;
 		return new_num;
+	}
+
+	bool operator ==(const ComplexNum& c1)const
+	{
+		if (this->real == c1.real && this->imag == c1.imag)
+			return true;
+		return false;
+	}
+
+	bool operator !=(const ComplexNum& c1)const
+	{
+		if (this->real == c1.real && this->imag == c1.imag)
+			return false;
+		return true;
 	}
 
 	friend std::ostream& operator<<(std::ostream& os, const ComplexNum& c) {
