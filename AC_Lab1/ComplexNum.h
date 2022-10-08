@@ -5,7 +5,11 @@ class ComplexNum
 private:
 	double real;
 	double imag;
+
+    constexpr static const double EPSILON = 0.001;
+
 public:
+
 	ComplexNum(double real = 0.0, double imag = 0.0) {
 		this->real = real;
 		this->imag = imag;
@@ -63,7 +67,6 @@ public:
 
 	bool operator ==(const ComplexNum& c1)const
 	{
-		double EPSILON = 0.001;
 		if (abs(this->real - c1.real) < EPSILON && abs(this->imag - c1.imag) < EPSILON)
 			return true;
 		return false;
@@ -71,7 +74,6 @@ public:
 
 	bool operator !=(const ComplexNum& c1)const
 	{
-		double EPSILON = 0.001;
 		if (abs(this->real - c1.real) < EPSILON && abs(this->imag - c1.imag) < EPSILON)
 			return false;
 		return true;
