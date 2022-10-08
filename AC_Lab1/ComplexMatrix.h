@@ -9,7 +9,7 @@ private:
 	int columns;
 	int rows;
 public:
-	ComplexMatrix(unsigned int columns, unsigned int rows) {
+	ComplexMatrix(unsigned int rows, unsigned int columns) {
 		matrix = new ComplexNum * [rows];
 		for (int i = 0; i < rows; i++) {
 			matrix[i] = new ComplexNum[columns];
@@ -50,8 +50,8 @@ public:
 	}
 
 	void set(unsigned int i, unsigned int j, ComplexNum num) {
-		assert(i < columns);
-		assert(j < rows);
+		assert(i < rows);
+		assert(j < columns);
 		matrix[i][j] = num;
 	}
 
@@ -80,6 +80,7 @@ public:
 			}
 			std::cout << '\n';
 		}
+		std::cout << "\n\n";
 	}
 
 	ComplexMatrix operator +(const ComplexMatrix& other)const  //add 2 matrix
@@ -102,6 +103,22 @@ public:
 			}
 		}
 		return temp;
+	}
+
+	ComplexMatrix operator *(const ComplexMatrix& other)const  //add 2 matrix
+	{
+		ComplexMatrix res(this->rows, other.columns);
+		for (int i = 0; i < this->rows; i++) 
+		{
+			for (int j = 0; j < other.columns; j++) 
+			{
+				for (int k = 0; k < other.rows; k++)
+				{
+					res.matrix[i][j] = res.matrix[i][j] + this->matrix[i][k] * other.matrix[k][j];
+				}
+			}
+		}
+		return res;
 	}
 
 	bool operator ==(const ComplexMatrix& other)const
