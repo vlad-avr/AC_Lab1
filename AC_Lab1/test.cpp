@@ -8,6 +8,45 @@
 #include "doctest.h"
 #include <time.h>
 
+TEST_CASE("Validity test: Strassen algorithm is equal to regular matrix multiplication") {
+	ComplexMatrix square_m1(10, 10);
+	ComplexMatrix square_m2(10, 10);
+	square_m1.auto_gen(1, 5, 1, 5);
+	square_m2.auto_gen(1, 5, 1, 5);
+	ComplexMatrix* reg_res = &(square_m1 * square_m2);
+	ComplexMatrix* strassen_res = Strassen(&square_m1, &square_m2);
+	CHECK(*reg_res == *strassen_res);
+	ComplexMatrix rand_m1(10, 15);
+	ComplexMatrix rand_m2(15, 20);
+	rand_m1.auto_gen(1, 5, 1, 5);
+	rand_m2.auto_gen(1, 5, 1, 5);
+	reg_res = &(rand_m1 * rand_m2);
+	strassen_res = Strassen(&rand_m1, &rand_m2);
+	CHECK(*reg_res == *strassen_res);
+}
+
+TEST_CASE("speedtest for strassen algorithm") {
+	int start_size = 20;
+	int	end_size = 320;
+	std::clock_t start, end;
+	for (int i = start_size; i <= end_size; i *= 2) {
+		ComplexMatrix m1(i, i);
+		ComplexMatrix m2(i, i);
+		m1.auto_gen(1, 5, 1, 5);
+		m2.auto_gen(1, 5, 1, 5);
+		start = clock();
+		ComplexMatrix* res = Strassen(&m1, &m2);
+		end = clock();
+		std::cout << "\n N = " << i;
+		std::cout << "\n Start: " << start << " ticks";
+		std::cout << "\n End: " << end << " ticks";
+		std::cout << "\n Duration: " << end - start << " ticks";
+		bool checker = (*res == (m1 * m2));
+		CHECK(checker);
+		std::cout << "\n";
+	}
+}
+
 TEST_CASE("testing the LU decomposition")
 {
 	int matrix_size = 4;
@@ -107,3 +146,4 @@ TEST_CASE("testing the equality of GaussJordan and LU inversions")
 
     CHECK(GaussJordanInverse(A) == LU_inverse(A));
 }
+
