@@ -11,4 +11,5 @@ add_executable(AC_Lab1
         AC_Lab1/LU_Inverse.h
         AC_Lab1/Strassen.h
         AC_Lab1/doctest.h
-        AC_Lab1/test.cpp AC_Lab1/GaussJordan.h)
+        AC_Lab1/test.cpp
+        AC_Lab1/GaussJordan.h)
