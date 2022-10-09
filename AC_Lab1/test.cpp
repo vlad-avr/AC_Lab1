@@ -3,6 +3,7 @@
 #include "ComplexNum.h"
 #include "ComplexMatrix.h"
 #include "LU_Inverse.h"
+#include "GaussJordan.h"
 
 #include "doctest.h"
 #include <time.h>
@@ -97,3 +98,12 @@ TEST_CASE("speedtesting the inverse matrix by LU decomposition")
 	}
 }
 
+TEST_CASE("testing the equality of GaussJordan and LU inversions")
+{
+    ComplexMatrix A (10, 10);
+    A.auto_gen(-10, 10, -10, 10);
+
+    A.print();
+
+    CHECK(GaussJordanInverse(A) == LU_inverse(A));
+}

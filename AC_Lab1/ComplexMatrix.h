@@ -83,6 +83,70 @@ public:
 		std::cout << "\n\n";
 	}
 
+    //function for exchanging two rows of a matrix
+    void swapRows(int row1, int row2)
+    {
+        assert(row1 >= 0 and row1 < rows);
+        assert(row2 >= 0 and row2 < columns);
+
+        int col = this->get_columns();
+        for (int i = 0; i < col; i++)
+        {
+            ComplexNum temp = matrix[row1][i];
+            matrix[row1][i] = matrix[row2][i];
+            matrix[row2][i] = temp;
+        }
+    }
+
+    int getRank()
+    {
+        ComplexMatrix complexMatrix = *this;
+
+        int R = complexMatrix.get_rows();
+        int rank = complexMatrix.get_columns();
+
+        for(int row = 0; row < rank; row++)
+        {
+            if(complexMatrix.get(row,row) != ComplexNum())
+            {
+                for (int col = 0; col < R; col++)
+                {
+                    if (col != row)
+                    {
+                        ComplexNum mult = complexMatrix.get(col, row) / complexMatrix.get(row, row);
+                        for (int i = 0; i < rank; i++)
+                            complexMatrix.set(col, i,
+                                              complexMatrix.get(col, i) - mult * complexMatrix.get(row, i));
+                    }
+                }
+            }
+            else
+            {
+                bool reduce = true;
+
+                for (int i = row + 1; i < R;  i++)
+                {
+                    if (complexMatrix.get(i,row) != ComplexNum())
+                    {
+                        complexMatrix.swapRows(row, i);
+                        reduce = false;
+                        break ;
+                    }
+                }
+                if (reduce)
+                {
+                    rank--;
+                    for (int i = 0; i < R; i ++)
+                        complexMatrix.set(i, row, complexMatrix.get(i, rank));
+                }
+
+                row--;
+            }
+        }
+
+        return rank;
+    }
+
 	ComplexMatrix operator +(const ComplexMatrix& other)const  //add 2 matrix
 	{
 		ComplexMatrix temp(this->rows, this->columns);
