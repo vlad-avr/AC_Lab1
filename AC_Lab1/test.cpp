@@ -96,3 +96,4 @@ TEST_CASE("speedtesting the inverse matrix by LU decomposition")
 		CHECK(res);
 	}
 }
+

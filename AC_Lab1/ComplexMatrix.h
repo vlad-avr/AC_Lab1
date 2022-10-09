@@ -68,14 +68,14 @@ public:
 	}
 
 	ComplexNum get(unsigned int i, unsigned int j) {
-		assert(i < columns);
-		assert(j < rows);
+		assert(i < rows);
+		assert(j < columns);
 		return matrix[i][j];
 	}
 
 	void print() {
-		for (int i = 0; i < columns; i++) {
-			for (int j = 0; j < rows; j++) {
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < columns; j++) {
 				std::cout << matrix[i][j] << "  ";
 			}
 			std::cout << '\n';
@@ -105,7 +105,7 @@ public:
 		return temp;
 	}
 
-	ComplexMatrix operator *(const ComplexMatrix& other)const  //add 2 matrix
+	ComplexMatrix operator *(const ComplexMatrix& other)const  //multiply (o(n^3) way) 2 matrix
 	{
 		ComplexMatrix res(this->rows, other.columns);
 		for (int i = 0; i < this->rows; i++) 
@@ -152,17 +152,28 @@ public:
 		}
 		return res;
 	}*/
-	/*
-	ComplexMatrix operator-(const ComplexMatrix& cm1) {
-		assert(this->width == cm1.width);
-		assert(this->height == cm1.height);
-		ComplexMatrix new_matr(this->width, this->height);
-		for (int i = 0; i < this->height; i++) {
-			for (int j = 0; j < this->width; j++) {
-				*(new_matr.matrix[i][j]) = *(matrix[i][j]) - *(cm1.matrix[i][j]);
+	
+	ComplexMatrix operator -(const ComplexMatrix& other)const  //subtract 2 matrix
+	{
+		ComplexMatrix temp(this->rows, this->columns);
+		if (rows != other.rows || columns != other.columns)
+		{
+			for (int i = 0; i < rows; i++)
+				for (int j = 0; j < columns; j++)
+					temp.matrix[i][j] = this->matrix[i][j];
+			return temp;
+		}
+		else
+		{
+			for (int i = 0; i < rows; i++) {
+				for (int j = 0; j < columns; j++) {
+					temp.matrix[i][j] = this->matrix[i][j] - other.matrix[i][j];
+
+				}
 			}
 		}
-	}*/
+		return temp;
+	}
 
 };
 
