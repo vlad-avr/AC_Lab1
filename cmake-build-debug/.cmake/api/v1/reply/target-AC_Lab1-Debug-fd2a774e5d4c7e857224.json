@@ -69,7 +69,7 @@
 			},
 			"sourceIndexes" : 
 			[
-				5
+				4
 			]
 		}
 	],
@@ -110,15 +110,14 @@
 				1,
 				2,
 				3,
-				4,
-				6
+				5
 			]
 		},
 		{
 			"name" : "Source Files",
 			"sourceIndexes" : 
 			[
-				5
+				4
 			]
 		}
 	],
@@ -137,11 +136,6 @@
 		{
 			"backtrace" : 1,
 			"path" : "AC_Lab1/LU_Inverse.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"path" : "AC_Lab1/Strassen.h",
 			"sourceGroupIndex" : 0
 		},
 		{
