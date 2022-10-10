@@ -29,7 +29,7 @@ TEST_CASE("Validity test: Strassen algorithm is equal to regular matrix multipli
 TEST_CASE("speedtesting for the strassen algorithm") {
 	srand(time(0));
 	int start_size = 20;
-	int	end_size = 320;
+	int	end_size = 160;
 	std::clock_t start, end;
 	std::cout << "Speedtesting the Strassen algorithm";
 	for (int i = start_size; i <= end_size; i *= 2) {
@@ -96,7 +96,7 @@ TEST_CASE("speedtesting the LU decomposition")
 {
 	srand(time(0));
 	int start_size = 20;
-	int	end_size = 320;
+	int	end_size = 160;
 	std::clock_t start, end;
 
 	std::cout << "Speedtesting the LU decomposition\n";
@@ -125,7 +125,7 @@ TEST_CASE("speedtesting the inverse matrix by LU decomposition")
 {
 	srand(time(0));
 	int start_size = 20;
-	int	end_size = 320;
+	int	end_size = 160;
 
 	std::clock_t start, end;
 
@@ -161,7 +161,7 @@ TEST_CASE("testing the equality of GaussJordan and LU inversions")
 	srand(time(0));
 	for (int i = 0; i < 50; i++) {
 		ComplexMatrix A(10, 10);
-		A.auto_gen(-10, 10, -10, 10);
+		A.auto_gen(5, 10, 5, 10);
 
 		//A.print();
 
