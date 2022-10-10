@@ -159,9 +159,15 @@ TEST_CASE("speedtesting the inverse matrix by LU decomposition")
 TEST_CASE("testing the equality of GaussJordan and LU inversions")
 {
 	srand(time(0));
-	for (int i = 0; i < 50; i++) {
+	for (int i = 0; i < 50; i++)
+    {
 		ComplexMatrix A(10, 10);
-		A.auto_gen(5, 10, 5, 10);
+
+        do
+        {
+            A.auto_gen(5, 10, 5, 10);
+        }
+        while(A.getRank()!=10);
 
 		//A.print();
 

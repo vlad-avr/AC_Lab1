@@ -27,6 +27,13 @@ public:
 
 	//~ComplexNum(){}
 
+	bool isNull()
+	{
+		if (this->real == 0.f && this->imag == 0.f) return true;
+
+		return false;
+	}
+
 	void operator=(const ComplexNum& c1) {
 		/*ComplexNum res(c1.real, c1.imag);
 		return res;*/

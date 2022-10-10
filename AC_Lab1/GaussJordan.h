@@ -8,40 +8,66 @@ ComplexMatrix GaussJordanInverse(ComplexMatrix A)
     assert(rank == columns);
     assert(rank == A.getRank());
 
-    ComplexMatrix resMatrix(rank, rank);
+    ComplexMatrix tempMatrix(rank, 2*rank);
 
-    for(int i = 0; i < rank; i++)
+    //setting the temp matrix
+    for (int i = 0; i < rank; i++)
     {
-        for(int j = 0; j < rank; j++)
+        for (int j = 0; j < 2 * rank; j++)
         {
-            resMatrix.set(i,j,((i==j) ? 1 : 0), 0);
+            if(j < rank)
+                tempMatrix.set(i,j,A.get(i,j));
+            if (j == (i + rank))
+                tempMatrix.set(i,j,1, 0);
         }
     }
 
+    //tempMatrix.print();
+
+    //interchanging the rows
+    for (int i = rank - 1; i > 0; i--)
+    {
+        if (tempMatrix.get(i-1,0).get_real() < tempMatrix.get(i,0).get_real())
+        {
+            tempMatrix.swapRows(i, i-1);
+        }
+    }
+
+
     for(int i = 0; i < rank; i++)
     {
-        assert(A.get(i, i) != ComplexNum(0,0)); // checking nulls on a principal diagonal
+        assert(!tempMatrix.get(i, i).isNull()); // checking nulls on a principal diagonal
 
         for(int j = 0; j < rank; j++)
         {
             if(i != j)
             {
-                ComplexNum ratio = A.get(j, i) / A.get(i, i);
+                ComplexNum temp = tempMatrix.get(j, i) / tempMatrix.get(i, i);
 
-                for(int k = 0; k < rank; k++)
+                for(int k = 0; k < 2 * rank; k++)
                 {
-                    A.set(j, k, A.get(j, k) - ratio * A.get(i, k));
-                    resMatrix.set(j, k, resMatrix.get(j, k) - ratio * resMatrix.get(i, k));
+                    tempMatrix.set(j, k, tempMatrix.get(j, k) -  tempMatrix.get(i, k) * temp);
                 }
             }
         }
     }
 
+    for (int i = 0; i < rank; i++)
+    {
+        ComplexNum temp = tempMatrix.get(i, i);
+        for (int j = 0; j < 2 * rank; j++)
+        {
+            tempMatrix.set(i, j, tempMatrix.get(i,j) / temp);
+        }
+    }
+
+    ComplexMatrix resMatrix(rank, rank);
+
     for(int i = 0; i < rank; i++)
     {
-        for(int j = 0; j < rank; j++)
+        for(int j = rank; j < 2*rank; j++)
         {
-            resMatrix.set(i, j, resMatrix.get(i,j) / A.get(i, i));
+            resMatrix.set(i, j - rank, tempMatrix.get(i,j));
         }
     }
 
