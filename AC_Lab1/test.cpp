@@ -14,16 +14,16 @@ TEST_CASE("Validity test: Strassen algorithm is equal to regular matrix multipli
 	ComplexMatrix square_m2(10, 10);
 	square_m1.auto_gen(1, 5, 1, 5);
 	square_m2.auto_gen(1, 5, 1, 5);
-	ComplexMatrix* reg_res = &(square_m1 * square_m2);
+	ComplexMatrix reg_res = square_m1 * square_m2;
 	ComplexMatrix* strassen_res = Strassen(&square_m1, &square_m2);
-	CHECK(*reg_res == *strassen_res);
+	CHECK(reg_res == *strassen_res);
 	ComplexMatrix rand_m1(10, 15);
 	ComplexMatrix rand_m2(15, 20);
 	rand_m1.auto_gen(1, 5, 1, 5);
 	rand_m2.auto_gen(1, 5, 1, 5);
-	reg_res = &(rand_m1 * rand_m2);
+	reg_res = rand_m1 * rand_m2;
 	strassen_res = Strassen(&rand_m1, &rand_m2);
-	CHECK(*reg_res == *strassen_res);
+	CHECK(reg_res == *strassen_res);
 }
 
 TEST_CASE("speedtest for strassen algorithm") {
@@ -44,6 +44,7 @@ TEST_CASE("speedtest for strassen algorithm") {
 		std::cout << "\n End: " << end << " ticks";
 		std::cout << "\n Duration: " << end - start << " ticks";
 		bool checker = (*res == (m1 * m2));
+		delete res;
 		CHECK(checker);
 		std::cout << "\n";
 	}

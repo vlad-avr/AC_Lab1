@@ -58,42 +58,51 @@ ComplexMatrix* Strassen_rec(ComplexMatrix* a, ComplexMatrix* b) {
             b22.set(i, j, ((i + new_N) < N && (j + new_Q) < Q) ? b->get(i + new_N, j + new_Q) : ComplexNum(0, 0));
         }
     }
-
+    ComplexMatrix D1 = a11 + a22;
+    ComplexMatrix D2 = b11 + b22;
+    ComplexMatrix D3 = a21 + a22;
+    ComplexMatrix D4 = b12 - b22;
+    ComplexMatrix D5 = b21 - b11;
+    ComplexMatrix D6 = a11 + a12;
+    ComplexMatrix D7 = a21 - a11;
+    ComplexMatrix D8 = b11 + b12;
+    ComplexMatrix D9 = a12 - a22;
+    ComplexMatrix D10 = b21 + b22;
     ComplexMatrix* M1;// = new ComplexMatrix(new_M, new_Q);
-    M1 = Strassen_rec(&(a11 + a22), &(b11 + b22));
+    M1 = Strassen_rec(&D1/*(a11 + a22)*/, &D2/*(b11 + b22)*/);
     ComplexMatrix* M2;// = new ComplexMatrix(new_N, new_N);
-    M2 = Strassen_rec(&(a21 + a22), &b11);
+    M2 = Strassen_rec(&D3/*(a21 + a22)*/, &b11);
     ComplexMatrix* M3;// = new ComplexMatrix(new_N, new_N);
-    M3 = Strassen_rec(&a11, &(b12 - b22));
+    M3 = Strassen_rec(&a11, &D4/*(b12 - b22)*/);
     ComplexMatrix* M4;// = new ComplexMatrix(new_N, new_N);
-    M4 = Strassen_rec(&a22, &(b21 - b11));
+    M4 = Strassen_rec(&a22, &D5/*(b21 - b11)*/);
     ComplexMatrix* M5;// = new ComplexMatrix(new_N, new_N);
-    M5 = Strassen_rec(&(a11 + a12), &(b22));
+    M5 = Strassen_rec(&D6/*(a11 + a12)*/, &(b22));
     ComplexMatrix* M6;// = new ComplexMatrix(new_N, new_N);
-    M6 = Strassen_rec(&(a21 - a11), &(b11 + b12));
+    M6 = Strassen_rec(&D7/*(a21 - a11)*/, &D8/*(b11 + b12)*/);
     ComplexMatrix* M7;// = new ComplexMatrix(new_N, new_N);
-    M7 = Strassen_rec(&(a12 - a22), &(b21 + b22));
+    M7 = Strassen_rec(&D9/*(a12 - a22)*/, &D10/*(b21 + b22)*/);
 
-    ComplexMatrix* R1;
+    /*ComplexMatrix* R1;
     ComplexMatrix *R2;
     ComplexMatrix *R3;
-    ComplexMatrix *R4;
-    R1 = &(*M1 + *M4 - *M5 + *M7);
-    R2 = &(*M3 + *M5);
-    R3 = &(*M2 + *M4);
-    R4 = &(*M1 - *M2 + *M3 + *M6);
+    ComplexMatrix *R4;*/
+    ComplexMatrix R1 = *M1 + *M4 - *M5 + *M7;
+    ComplexMatrix R2 = *M3 + *M5;
+    ComplexMatrix R3 = *M2 + *M4;
+    ComplexMatrix R4 = *M1 - *M2 + *M3 + *M6;
     ComplexMatrix* Res = new ComplexMatrix(M, Q);
     for (int i = 0; i < new_M; i++) {
         for (int j = 0; j < new_Q; j++) {
-            Res->set(i, j, R1->get(i, j));
+            Res->set(i, j, R1.get(i, j));
             if ((j + new_Q) < Q) {
-                Res->set(i, j + new_Q, R2->get(i, j));
+                Res->set(i, j + new_Q, R2.get(i, j));
             }
             if ((i + new_M) < M) {
-                Res->set(i + new_M, j, R3->get(i, j));
+                Res->set(i + new_M, j, R3.get(i, j));
             }
             if ((i + new_M) < M && (j + new_Q) < Q) {
-                Res->set(i + new_M, j + new_Q, R4->get(i, j));
+                Res->set(i + new_M, j + new_Q, R4.get(i, j));
             }
         }
     }
