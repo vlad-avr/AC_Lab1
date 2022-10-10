@@ -18,12 +18,26 @@ public:
 		this->rows = rows;
 	}
 
-	/*~ComplexMatrix() {
+	ComplexMatrix(const ComplexMatrix& copy) {
+		this->rows = copy.rows;
+		this->columns = copy.columns;
+		matrix = new ComplexNum * [rows];
+		for (int i = 0; i < this->rows; i++)
+			this->matrix[i] = new ComplexNum[copy.columns];
+
+		for (int i = 0; i < copy.rows; i++)
+			for (int j = 0; j < copy.columns; j++)
+				this->matrix[i][j] = copy.matrix[i][j];
+	}
+
+	~ComplexMatrix() {
 		for (int i = 0; i < rows; i++) {
 			delete[] matrix[i];
 		}
 		delete[] matrix;
-	}*/
+		this->rows = NULL;
+		this->columns = NULL;
+	}
 
 	void auto_gen(int min_real, int max_real, int min_imag, int max_imag) {
 		int span_real = abs(max_real - min_real) + 1;
@@ -146,6 +160,27 @@ public:
 
         return rank;
     }
+
+	ComplexMatrix& operator =(const ComplexMatrix& copy) {
+		if (this != &copy)
+		{
+			for (int i = 0; i < this->rows; i++) {
+				delete[] matrix[i];
+			}
+			delete[] matrix;
+
+			matrix = new ComplexNum * [copy.rows];
+			this->rows = copy.rows;
+			this->columns = copy.columns;
+			for (int i = 0; i < copy.rows; i++)
+				this->matrix[i] = new ComplexNum[copy.columns];
+
+			for (int i = 0; i < copy.rows; i++)
+				for (int j = 0; j < copy.columns; j++)
+					this->matrix[i][j] = copy.matrix[i][j];
+		}
+		return *this;
+	}
 
 	ComplexMatrix operator +(const ComplexMatrix& other)const  //add 2 matrix
 	{

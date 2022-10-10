@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="AC_Lab1\ComplexMatrix.h" />
     <ClInclude Include="AC_Lab1\ComplexNum.h" />
+    <ClInclude Include="AC_Lab1\GaussJordan.h" />
     <ClInclude Include="AC_Lab1\Strassen.h" />
     <ClInclude Include="AC_Lab1\LU_Inverse.h" />
   </ItemGroup>
