@@ -179,8 +179,16 @@ TEST_CASE("Speedtesting GaussJordan inversion method")
         while(A.getRank()!=MATRIX_RANK);
 
         start = clock();
-		ComplexMatrix m = GaussJordanInverse(A);
+		ComplexMatrix invA = GaussJordanInverse(A);
         end = clock();
+
+        ComplexMatrix E(MATRIX_RANK, MATRIX_RANK);
+        for(int i = 0; i < MATRIX_RANK; i++)
+            E.set(i,i,ComplexNum(1));
+
+        bool res = (A * GaussJordanInverse(A) == E);
+
+        CHECK(res);
 
         std::cout << "\nN = " << i;
         std::cout << "\nMatrix rank = " << MATRIX_RANK;
