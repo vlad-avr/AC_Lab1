@@ -22,20 +22,29 @@ ComplexMatrix GaussJordanInverse(ComplexMatrix A)
         }
     }
 
-    //tempMatrix.print();
-
-    //interchanging the rows
-    for (int i = rank - 1; i > 0; i--)
+    for(int i = 0; i < rank; i++)
     {
-        if (tempMatrix.get(i-1,0).get_real() < tempMatrix.get(i,0).get_real())
-        {
-            tempMatrix.swapRows(i, i-1);
-        }
+        tempMatrix.set(i, i + rank, 1, 0);
     }
 
+//    //interchanging the rows
+//    for (int i = rank - 1; i > 0; i--)
+//    {
+//        if (tempMatrix.get(i-1,0).get_real() < tempMatrix.get(i,0).get_real())
+//        {
+//            tempMatrix.swapRows(i, i-1);
+//        }
+//    }
+
+//    std::cout << std::endl;
+//    tempMatrix.print();
 
     for(int i = 0; i < rank; i++)
     {
+//        std::cout << tempMatrix.get(i, i) << std::endl;
+
+        while(tempMatrix.get(i, i).isNull()) tempMatrix.swapRows(i, i+1);
+//      if(tempMatrix.get(i, i).isNull()) tempMatrix.print();
         assert(!tempMatrix.get(i, i).isNull()); // checking nulls on a principal diagonal
 
         for(int j = 0; j < rank; j++)
@@ -60,6 +69,8 @@ ComplexMatrix GaussJordanInverse(ComplexMatrix A)
             tempMatrix.set(i, j, tempMatrix.get(i,j) / temp);
         }
     }
+
+//    tempMatrix.print();
 
     ComplexMatrix resMatrix(rank, rank);
 
